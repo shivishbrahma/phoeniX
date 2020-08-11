@@ -20,14 +20,20 @@ A jQuery Clone built in native javascript.
 
 - [x] `collection.hide()` - Hide the dom elements
 - [x] `collection.show()` - Show the dom elements
-- [] `collection.fadeIn()` - Fade In the dom elements
-- [] `collection.fadeOut()` - Fade Out the dom elements
+- [ ] `collection.fadeIn()` - Fade In the dom elements
+- [ ] `collection.fadeOut()` - Fade Out the dom elements
 
 ### Elements
 
-- [] `collection.addClass(<classname>)` - Add class name to the class list
-- [] `collection.removeClass(<classname>)` - Remove class name to the class list
-- []
+- [ ] `collection.addClass(<classname>)` - Add class name to the class list
+- [ ] `collection.removeClass(<classname>)` - Remove class name to the class list
+- [ ] `collection.after(<element>)` - Add an element after the dom element
+- [ ] `collection.append(<element>)` - Add an element as child at the end
+- [ ] `collection.before(<element>)` - Add an element before the dom element
+- [ ] `collection.prepend(<element>)` - Add an element as child at the start
+- [ ] `collection.children()` - Returns the list of all children dom elements
+- [ ] `collection.clone()` - Clones the dom element and add it after the element
+- [ ] `$.contains(el, child)` - Checks whether contains that element as child
 
 ### References
 
