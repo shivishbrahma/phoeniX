@@ -1,3 +1,7 @@
+/**
+ * @author: Purbayan Chowdhury
+ */
+
 const makeNiceCollection = (collection) => {
   collection.each = (callback) => {
     collection.forEach((element, i) => {
@@ -6,13 +10,21 @@ const makeNiceCollection = (collection) => {
     });
   };
 
+  /**
+   * Add event listener
+   * @param {string} eventName Contains event name
+   * @param {function} handler Contains callback function
+   */
   collection.on = (eventName, handler) => {
     collection.forEach((ele) => {
       ele.addEventListener(eventName, handler);
     });
   };
 
-  // Style Setter
+  /**
+   * Sets or Returns the style value for the field
+   * @param  {...any} cssArgs - Contains a object with style elements or a function or a string
+   */
   collection.css = (...cssArgs) => {
     if (typeof cssArgs[0] === 'string') {
       const [property, value] = cssArgs;
@@ -37,14 +49,10 @@ const makeNiceCollection = (collection) => {
     }
   };
 
-  collection.html = () => {
-    htmlList = [];
-    collection.forEach((ele) => {
-      htmlList.push(ele.innerHTML);
-    });
-    return htmlList;
-  };
-
+  /**
+   * Sets or Returns the height
+   * @param  {...any} args - Contains a function or a string
+   */
   collection.height = (...args) => {
     if (args.length == 0) {
       styleArray = [];
@@ -60,6 +68,101 @@ const makeNiceCollection = (collection) => {
         else ele.style.height = val + 'px';
       });
     }
+  };
+
+  /**
+   * Sets or Returns the width
+   * @param  {...any} args - Contains a function or a string
+   */
+  collection.width = (...args) => {
+    if (args.length == 0) {
+      styleArray = [];
+      collection.forEach((ele) => {
+        styleArray.push(getComputedStyle(ele)[width].replace('px', ''));
+      });
+      return styleArray;
+    } else {
+      val = args[0];
+      collection.forEach((ele) => {
+        if (typeof val === 'function') val = val();
+        if (typeof val === 'string') ele.style.width = val;
+        else ele.style.width = val + 'px';
+      });
+    }
+  };
+
+  /**
+   * Sets or Returns the inner HTML of the DOM element
+   * @param {...any} args - Contains a function, a string or an array
+   */
+  collection.html = (...args) => {
+    if (args.length == 0) {
+      htmlList = [];
+      collection.forEach((ele) => {
+        htmlList.push(ele.innerHTML);
+      });
+      return htmlList;
+    } else {
+      if (args.length == 1) {
+        val = args[0];
+        collection.forEach((ele) => {
+          if (typeof val === 'function') val = val();
+          if (typeof val === 'string') ele.innerHTML = val;
+          if (typeof val == 'object') {
+            let v;
+            collection.forEach((ele, i) => {
+              if (i <= val.length) v = val[i];
+              else v = val[val.length - 1];
+              if (typeof v === 'function') v = v();
+              if (typeof v === 'string') ele.innerHTML = v;
+            });
+          }
+        });
+      }
+    }
+  };
+
+  /**
+   * Sets or Returns the inner text of the DOM element
+   * @param {...any} args - Contains a function, a string or an array
+   */
+  collection.text = (...args) => {
+    if (args.length == 0) {
+      textList = [];
+      collection.forEach((ele) => {
+        textList.push(ele.textContent);
+      });
+      return textList;
+    } else {
+      if (args.length == 1) {
+        val = args[0];
+        collection.forEach((ele) => {
+          if (typeof val === 'function') val = val();
+          if (typeof val === 'string') ele.textContent = val;
+          if (typeof val == 'object') {
+            let v;
+            collection.forEach((ele, i) => {
+              if (i <= val.length) v = val[i];
+              else v = val[val.length - 1];
+              if (typeof v === 'function') v = v();
+              if (typeof v === 'string') ele.textContent = v;
+            });
+          }
+        });
+      }
+    }
+  };
+
+  collection.hide = () => {
+    collection.forEach((ele) => {
+      ele.style.display = 'none';
+    });
+  };
+
+  collection.show = () => {
+    collection.forEach((ele) => {
+      ele.style.display = '';
+    });
   };
 };
 
