@@ -25,8 +25,8 @@ A jQuery Clone built in native javascript.
 
 ### Elements
 
-- [ ] `collection.addClass(<classname>)` - Add class name to the class list
-- [ ] `collection.removeClass(<classname>)` - Remove class name to the class list
+- [x] `collection.addClass(<classname>)` - Add class name to the class list
+- [x] `collection.removeClass(<classname>)` - Remove class name to the class list
 - [ ] `collection.after(<element>)` - Add an element after the dom element
 - [ ] `collection.append(<element>)` - Add an element as child at the end
 - [ ] `collection.before(<element>)` - Add an element before the dom element

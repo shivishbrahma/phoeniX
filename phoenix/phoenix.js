@@ -57,7 +57,7 @@ const makeNiceCollection = (collection) => {
     if (args.length == 0) {
       styleArray = [];
       collection.forEach((ele) => {
-        styleArray.push(getComputedStyle(ele)[height].replace('px', ''));
+        styleArray.push(getComputedStyle(ele)['height'].replace('px', ''));
       });
       return styleArray;
     } else {
@@ -78,7 +78,7 @@ const makeNiceCollection = (collection) => {
     if (args.length == 0) {
       styleArray = [];
       collection.forEach((ele) => {
-        styleArray.push(getComputedStyle(ele)[width].replace('px', ''));
+        styleArray.push(getComputedStyle(ele)['width'].replace('px', ''));
       });
       return styleArray;
     } else {
@@ -153,15 +153,45 @@ const makeNiceCollection = (collection) => {
     }
   };
 
+  /**
+   * Hide a DOM element
+   */
   collection.hide = () => {
     collection.forEach((ele) => {
       ele.style.display = 'none';
     });
   };
 
+  /**
+   * Show a DOM element
+   */
   collection.show = () => {
     collection.forEach((ele) => {
       ele.style.display = '';
+    });
+  };
+
+  /**
+   * Add classes to a DOM element
+   * @param  {...any} className List of classes to be added to class attribute
+   */
+  collection.addClass = (...className) => {
+    collection.forEach((ele) => {
+      className.forEach((_class) => {
+        ele.classList.add(_class);
+      });
+    });
+  };
+
+  /**
+   * Remove classes from a DOM element
+   * @param  {...any} className List of classes to be deleted from class attribute
+   */
+  collection.removeClass = (...className) => {
+    collection.forEach((ele) => {
+      className.forEach((_class) => {
+        ele.classList.remove(_class);
+      });
     });
   };
 };
